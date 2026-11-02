@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>gr.bank</groupId>
+    <artifactId>loan-evaluation-app</artifactId>
+    <version>1.0.0</version>
+    <name>Loan Evaluation App</name>
+
+    <properties>
+        <maven.compiler.release>17</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <flatlaf.version>3.5.4</flatlaf.version>
+    </properties>
+
+    <build>
+        <!-- Τα πακέτα βρίσκονται απευθείας στο src/, όχι στο src/main/java -->
+        <sourceDirectory>src</sourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.5.0</version>
+                <configuration>
+                    <mainClass>LoanApp.LoanApp.Main</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <!-- Σύγχρονη εμφάνιση. Προαιρετική: αν λείπει, η εφαρμογή χρησιμοποιεί το look του συστήματος. -->
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf</artifactId>
+            <version>${flatlaf.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Οδηγός SQL Server (το DatabaseManager τον βρίσκει μέσω DriverManager) -->
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>12.8.1.jre11</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Ανάγνωση PDF κινήσεων λογαριασμού (προαιρετική, φορτώνεται με reflection) -->
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>3.0.3</version>
+            <scope>runtime</scope>
+        </dependency>
+    </dependencies>
+</project>
